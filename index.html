@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <h2>🗂️ Task Manager</h2>
+        <a href="#taskList">המשימות שלי</a>
+    </header>
+    <main>
+        <h1>Welcome to Task Manager system</h1>
+        <img src="seaturtle.gif" alt="seaturtle" class="floatingimage">
+        <div class="section1">
+            <img src="algae.png" alt="seaturtle" class="alimg">
+            <div class="addTasks">
+                <h2>הוסיף משימה חדשה</h2>
+                <div>
+                    <div class="divlabel">
+                        <label>תיאור המשימה</label>
+                        <input type="text" name="" id="descNewTask" placeholder=" תיאור המשימה " required>
+                    </div>
+                    <div class="divlabel">
+                        <label for=""> תאריך היעד של
+                            המשימה.</label>
+                        <input type="date" name="" id="dueNewTask" placeholder="תאריך היעד של
+                המשימה." required>
+                    </div>
+                    <button type="submit" id="submitid">הוסיף משימה </button>
+                </div>
+            </div>
+            <div class="divButtons">
+                <div class="buttonsFilter">
+                    <h3>Filter by these options</h3>
+                    <button type="button" id="allbtn">הכל</button>
+                    <button type="button" id="completedbtn">הושלמו</button>
+                    <button type="button" id="activebtn">פעילות</button>
+                </div>
+                <div class="SortButtons">
+                    <h3>Sort by Date</h3>
+                    <button type="button" id="sortbtn">מיין לפי תאריך יעד</button>
+                </div>
+            </div>
+        </div>
+        <div class="showTasks">
+            <div class="Taskscontainer">
+                <h2>רשימת המישימות</h2>
+                <ul id="taskList">
+
+                </ul>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 Task Manager. כל הזכויות שמורות.</p>
+    </footer>
+</body>
+
+</html>
