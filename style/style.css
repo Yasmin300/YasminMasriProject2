@@ -233,7 +233,7 @@ h1 {
 
 .showTasks .Taskscontainer #taskList li {
     border: 20px solid transparent;
-    border-image-source: url('wave3.svg');
+    border-image-source: url('../images/wave3.svg');
     border-image-slice: 60 fill;
     padding: 10px;
     list-style: none;
@@ -244,7 +244,7 @@ h1 {
 }
 
 .showTasks .Taskscontainer #taskList .complete {
-    border-image-source: url('wavecomplete.svg');
+    border-image-source: url('../images/wavecomplete.svg');
     text-decoration: line-through;
 
 }
