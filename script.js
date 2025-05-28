@@ -5,9 +5,14 @@ document.getElementById('submitid').addEventListener('click', addTask);
 let currentFilter = 'all';
 function getTasks() {
     let taskarray = [];
-    const tasks = localStorage.getItem('tasks');
-    if (tasks != null) {
-        taskarray = JSON.parse(tasks);
+    try {
+        const tasks = localStorage.getItem('tasks');
+        if (tasks != null) {
+            taskarray = JSON.parse(tasks);
+        }
+    }
+    catch (error) {
+        console.error("Error reading from localStorage:", error.message);
     }
     return taskarray;
 
@@ -19,9 +24,15 @@ function getIds() {  //get the ids of all tasks in the tasks array
     return existingSet;
 }
 function saveTasks(tasks) {
-    if (tasks != null) {
-        let task = JSON.stringify(tasks);
-        localStorage.setItem('tasks', task);
+    try {
+        if (tasks != null) {
+            let task = JSON.stringify(tasks);
+            localStorage.setItem('tasks', task);
+        }
+    }
+    catch (error) {
+        console.error("Error saving to localStorage:", error.message);
+        alert("Can't save tasks. Storage may be full.");
     }
 }
 function addTask() {
@@ -44,7 +55,9 @@ function addTask() {
     }
 
 }
-
+function checkid(id, ids) {
+    return !ids.has(id);
+}
 function generateid(length = 6) {
     return Math.random().toString(36).substring(2, length + 2);
 }
@@ -52,14 +65,10 @@ function getId() {
     const limit = 100; // max tries to create unique id
     let attempts = 0; // how many attempts
     let id = generateid();
-    let checkId = function (id, ids) {
-        return !ids.has(id);
-    };
+    let checkId = checkid(id, ids);
     while (checkId && attempts < limit) {
         id = generateid();
-        checkId = function (id, ids) {
-            return !ids.has(id);
-        }
+        checkId = checkid(id, ids);
         attempts++;
     }
     return id;
@@ -125,7 +134,7 @@ function filterTasks(tasks, filter) {
         case 'all':
             return tasks;
         case 'active':
-            return tasks.filter((task) => {  //filter the array by a fuction , using arrow function
+            return tasks.filter((task) => {  //filter the array by a function , using arrow function
                 if (task.completed != true)
                     return task;
             }
@@ -176,7 +185,36 @@ async function fetchInitialTasks() {
         renderTasks();
         console.log(inttasks);
     } catch (error) {
-        console.error(error.message);
+        console.error(error.message);//incase not able to connect add default tasks.
+        let intasks = [{
+            id: '1',
+            text: 'Task1',
+            dueDate: new Date().toISOString().split('T')[0],
+            completed: false
+        },
+        {
+            id: '2',
+            text: 'Task2 ',
+            dueDate: new Date().toISOString().split('T')[0],
+            completed: false
+        },
+        {
+            id: '3',
+            text: 'Task3',
+            dueDate: new Date().toISOString().split('T')[0],
+            completed: false
+        },
+        {
+            id: '4',
+            text: 'Task4',
+            dueDate: new Date().toISOString().split('T')[0],
+            completed: true
+        },
+        ];
+        tasks.push(...intasks);
+        saveTasks(tasks);
+        renderTasks();
     }
 }
+
 fetchInitialTasks();
