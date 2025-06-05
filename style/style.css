@@ -31,6 +31,14 @@ h1 {
         0 0 20px rgba(0, 200, 255, 0.4);
 }
 
+input,
+button,
+.task {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
 .section1 {
     display: flex;
     flex-direction: row;
@@ -191,10 +199,10 @@ h1 {
     color: #005f73;
     border: 3px solid #00aacc;
     cursor: pointer;
-    height: 30px;
+    height: 35px;
     width: 80%;
     transition: all 0.5s ease;
-    margin: 3px;
+    margin: 5px;
     padding: 2px;
 }
 
@@ -240,6 +248,14 @@ h1 {
     color: #003f5c;
     font-size: 16px;
     height: 200px;
+    word-wrap: break-word;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+    transition: all 1s ease;
+
+}
+
+.showTasks .Taskscontainer #taskList li:hover {
+    transform: scale(1.05);
 
 }
 
@@ -258,6 +274,7 @@ h1 {
     cursor: pointer;
     transition: all 0.5s ease;
     font-weight: bold;
+    border: 1px solid blue;
 }
 
 .showTasks .Taskscontainer #taskList li .completeTask:hover {
@@ -273,6 +290,7 @@ h1 {
     cursor: pointer;
     transition: all 0.5s ease;
     font-weight: bold;
+    border: 1px solid black;
 }
 
 .showTasks .Taskscontainer #taskList li .deleteTask:hover {
@@ -327,7 +345,7 @@ footer p {
     }
 
     .showTasks .Taskscontainer #taskList li {
-        border-image-slice: 30 fill;
+        border-image-slice: 40 fill;
     }
 
     footer p {
@@ -340,13 +358,25 @@ footer p {
     }
 }
 
+@media (max-width:414px) {
+    .showTasks .Taskscontainer #taskList li {
+        height: 220px;
+    }
+}
+
+@media (max-width:400px) {
+    .showTasks .Taskscontainer #taskList li {
+        border-image-slice: 30 fill;
+    }
+}
+
 @media (max-width:670px) {
     footer p {
         font-size: 20px;
     }
 }
 
-@media (max-width:335px) {
+@media (max-width:380px) {
     .showTasks .Taskscontainer #taskList li {
         height: fit-content;
     }
