@@ -17,12 +17,13 @@ function getTasks() {
     return taskarray;
 
 }
-function getIds() {  //get the ids of all tasks in the tasks array
+function getIds() {  //get the ids of all tasks in the tasks array in a set to unsure uniqueness
     const existingSet = new Set();
     for (let task of tasks)
         existingSet.add(task.id);
     return existingSet;
 }
+
 function saveTasks(tasks) {
     try {
         if (tasks != null) {
@@ -35,6 +36,7 @@ function saveTasks(tasks) {
         alert("Can't save tasks. Storage may be full.");
     }
 }
+// Adds a new task to the task list, saves it, and re-renders the UI
 function addTask() {
     let description = document.getElementById('descNewTask');
     let date = document.getElementById('dueNewTask');
@@ -58,6 +60,7 @@ function addTask() {
 function checkid(id, ids) {
     return !ids.has(id);
 }
+//generates an id for task
 function generateid(length = 6) {
     return Math.random().toString(36).substring(2, length + 2);
 }
@@ -78,7 +81,7 @@ function renderTasks() {
     let taskList = document.querySelector('#taskList');
     taskList.innerHTML = '';
     const currenttasks = filterTasks(tasks, currentFilter);
-
+    //foreach task we add a list in the tasklist showing each task
     currenttasks.forEach(task => {
         let newli = document.createElement('li');
         newli.innerHTML = `<p>Task description: ${task.text}</p> <p> due date: ${task.dueDate}</p>
@@ -93,6 +96,7 @@ function renderTasks() {
 
     })
 }
+//delete task from task array and renders page again
 function deleteTask(event) {
     const id = event.target.dataset.id;
     for (let task of tasks) {
@@ -105,6 +109,7 @@ function deleteTask(event) {
         }
     }
 }
+// if task is completed becomes incompleted and if its incompleted becomes completed
 function completeTask(event) {
     const id = event.target.dataset.id;
     for (let task of tasks) {
